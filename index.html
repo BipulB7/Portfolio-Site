@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" 
+      rel="stylesheet"
+    />
+    
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("0buW2TVDqPaUIkL34");;
+      })();
+    </script>
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#home" class="logo">
+        Bipul <span>Banjade</span>
+      </a>
+
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Expertise</a>
+        <a href="#projects">Work/Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="gradient-btn">Contact Me</button>
+    </header>
+
+    <section class="home" id="home">
+      <div class="home-content">
+        <h1>Hi, It's <span>Bipul</span></h1>
+        <h3>
+          I'm an <span>Engineer/Physicist</span>
+        </h3>
+        <p>I'm a Junior at New York University, where I'm pursuing a Bachelor's degree in Computer Science and Physics. I have experience in 
+          Software Engineering, AI Engineering, Theoretical/Experimental Physics, and Web Development.
+        </p>
+
+        <div class="social-icons">
+          <a href="https://github.com/BipulB7" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/bipul77/" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-linkedin-square"></i>
+          </a>
+          <a href="https://www.instagram.com/bipssb" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-instagram-alt"></i>
+          </a>
+          <a href="https://x.com/home" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-twitter"></i>
+          </a>
+        </div>
+
+        <div class="btn-group">
+          <!-- Added id for Hire button and a hidden span for the copy message -->
+          <a href="#" id="hireBtn" class="btn">Hire</a>
+          <span id="copyMessage" style="display: none; margin-left: 1rem; font-size: 1.6rem; color: var(--main-color);">
+            Email copied
+          </span>
+          <a href="#contact" class="btn">Contact</a>
+        </div>
+      </div>
+
+      <div class="home-img">
+        <img src="image.jpg" alt="" />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="image2.png" alt="">
+      </div>
+
+      <div class="about-content">
+        <h2>About <span>Me</span></h2>
+      
+        <p>Hello! I’m a junior at New York University pursuing a B.S. in Computer Science and a B.A. in Physics, with a strong focus on software engineering, machine learning, and data science. My passion lies in blending theoretical knowledge with real-world problem-solving—whether it’s designing sophisticated data pipelines, developing AI-driven applications, or exploring physics-based simulations.</p>
+      
+        <br><br>
+      
+        <p>I’ve gained hands-on experience as a Software Engineer at Scale AI, where I optimized and designed Python, Java, C, JavaScript, and Swift codebases to enhance AI models’ responses and logical structures. This included training top AI models using physics simulations and implementing various backend services, as well as leveraging data from real-world systems through Pandas, Scipy, and Scikit to forecast sales and analyze customer trends. Collaborating with industry-leading AI companies, I also played a key role in refining the coding capabilities of their language models, ensuring robust performance and adaptability. By combining these technical experiences with my academic background, I’m committed to developing impactful, data-driven systems that push the boundaries of technology.</p>
+      
+        <br><br>
+      
+        <p>I’m dedicated to building and creating meaningful projects, powered by my expertise in software engineering, numerical analysis, machine learning, and data analytics. Building on my expertise in physics—where advanced numerical and data analysis are pivotal—and my creative approach to software engineering, I aim to develop efficient solutions that are highly capable and efficient.</p>
+      
+        <a href="#" class="btn">Read More</a>
+      </div>
+      
+    </section>
+
+    <section class="services" id="services">
+      <h2 class="heading">Expertise</h2>
+      <div class="services-container">
+    
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bxl-figma"></i>
+            <h4>Physics</h4>
+            <p>
+              At NYU, I am pursuing a B.A. in Physics, where I delve into advanced numerical and data analysis. My coursework and work experiences have trained me to tackle complex theoretical problems and translate them into practical applications by the use of technology.
+            </p>
+          </div>
+        </div>
+    
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bx-code"></i>
+            <h4>Software Engineering</h4>
+            <p>
+              With a strong foundation in Computer Science, I specialize in building efficient and scalable solutions. My background includes optimizing codebases, machine learning techniques, and contributing to software projects that blend creativity with robust technical implementations.
+            </p>
+          </div>
+        </div>
+    
+        <div class="service-box">
+          <div class="service-info">
+            <i class="bx bx-code-curly"></i>
+            <h4>Web Development</h4>
+            <p>
+              I develop intuitive and responsive web applications, drawing on frameworks and libraries like React, Node.js, and MongoDB. My focus is on creating seamless user experiences, maintaining clean design principles, and deploying modern toolsets to deliver high-quality, scalable platforms.
+            </p>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+    
+    <section class="projects" id="projects">
+      <h2 class="heading">Work/Projects</h2>
+      <div class="projects-box">
+        <div class="project-card">
+          <img src="project1.png" alt="">
+          <h3>Scale AI</h3>
+          <p>AI Software Engineer</p>
+          <div class="btn review-btn">More Info</div>
+          <!-- dropdown details container -->
+          <div class="project-details">
+            <p>Optimized and trained industry-leading LLMs by integrating advanced physics simulations and implementing robust Python codebases for apps, ML models and data analytics.</p>
+          </div>
+        </div>
+    
+        <div class="project-card">
+          <img src="project5.png" alt="">
+          <h3>Cosmico AI</h3>
+          <p>Research Hub</p>
+          <div class="btn review-btn">Review Project</div>
+          <div class="project-details">
+            <p>Developed a full-stack research hub that fetches and synthesizes scientific papers from databases like NASA, enabling real-time analysis and citation.</p>
+          </div>
+        </div>
+    
+        <div class="project-card">
+          <img src="project3.png" alt="">
+          <h3>Information Tech</h3>
+          <p>IT Technician</p>
+          <div class="btn review-btn">More Info</div>
+          <div class="project-details">
+            <p>Streamlined the NYU Bobst Library database with macOS scripting, creating efficient pipelines for managing and interacting with patron data.</p>
+          </div>
+        </div>
+    
+        <div class="project-card">
+          <img src="project4.png" alt="">
+          <h3>Portfolio Project</h3>
+          <p>Personal Website</p>
+          <div class="btn review-btn">Review Project</div>
+          <div class="project-details">
+            <p>The current site—a cutting-edge portfolio built using React, Tailwind CSS, HTML, and JavaScript.</p>
+          </div>
+        </div>
+    
+        <div class="project-card">
+          <img src="project2.png" alt="">
+          <h3>LockedIn: Smart Box</h3>
+          <p>Hardware & Functional Engineering</p>
+          <div class="btn review-btn">Review Project</div>
+          <div class="project-details">
+            <p>Engineered an automatic smart box using hardware circuitry, C++, laser cutting, and 3D printing, earning a top-3 finish in NYU Tandon’s engineering competition.</p>
+          </div>
+        </div>
+    
+        <div class="project-card">
+          <img src="project6.png" alt="">
+          <h3>Physics Labs</h3>
+          <p>Lab Experience & Projects</p>
+          <div class="btn review-btn">More Info</div>
+          <div class="project-details">
+            <p>Leveraged over three years of lab experience to combine theoretical and experimental physics with Python analytics, yielding insightful experiment analyses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="heading">Contact<span>Me</span></h2>
+      <form id="contactForm" action="#">
+        <div class="input-group">
+          <div class="input-box">
+            <input type="text" name="user_name" placeholder="Full Name" required>
+            <input type="email" name="user_email" placeholder="Email" required>
+          </div>
+          <div class="input-box">
+            <input type="number" name="user_phone" placeholder="Phone Number" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+          </div>
+        </div>
+        <div class="input-group-2">
+          <textarea name="message" placeholder="Your Message" cols="30" rows="10" required></textarea>
+          <input type="submit" value="Send Message" class="btn">
+        </div>
+      </form>
+    </section>
+    
+
+    <footer class="footer">
+      <div class="social-icons">
+        <a href="#">
+          <i class="bx bxl-github"></i>
+        </a>
+        <a href="#">
+          <i class="bx bxl-linkedin-square"></i>
+        </a>
+        <a href="#">
+          <i class="bx bxl-instagram-alt"></i>
+        </a>
+        <a href="#">
+          <i class="bx bxl-twitter"></i>
+        </a>
+      </div>
+      <ul class="list">
+        <li>
+          <a href="#">FAQ</a>
+        </li>
+        <li>
+          <a href="#services">Expertise</a>
+        </li>
+        <li>
+          <a href="#about">About Me</a>
+        </li>
+        <li>
+          <a href="#projects">Work/Projects</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+      <p class="copyright">
+        © Bipul Banjade | All Rights Reserved
+      </p>
+    </footer>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
