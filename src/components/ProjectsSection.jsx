@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ExternalLink, Github, ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import cosmicoImage from "../assets/cosmico.png";
 import physicsImage from "../assets/phys.png";
-import portfolioImage from "../assets/porto.png"; // ✅ New image
+import portfolioImage from "../assets/porto.png";
 
 const projects = [
   {
@@ -12,8 +12,8 @@ const projects = [
       "A collaborative AI platform built for scientific discovery using LLMs, physics engines, and a modular plugin architecture.",
     image: cosmicoImage,
     tags: ["React", "Node.js", "LLMs", "MongoDB"],
-    demoUrl: "https://github.com/BipulB7",
-    githubUrl: "https://github.com/BipulB7",
+    demoUrl: "https://cosmicoai.netlify.app",
+    githubUrl: "https://github.com/BipulB7/Cosmico-Backend",
   },
   {
     id: 2,
@@ -95,12 +95,12 @@ export const ProjectsSection = () => {
         </p>
 
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${fadeInClass} ${transitionClass}`}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch ${fadeInClass} ${transitionClass}`}
         >
           {projects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -110,41 +110,41 @@ export const ProjectsSection = () => {
                 />
               </div>
 
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              <div className="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {project.description}
+                  </p>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
-                  </div>
+                <div className="flex flex-col space-y-2 mt-auto">
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center py-2 px-4 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition"
+                  >
+                    WEBSITE
+                  </a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-primary hover:underline text-center"
+                  >
+                    View on GitHub
+                  </a>
                 </div>
               </div>
             </div>
