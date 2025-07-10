@@ -11,7 +11,7 @@ const projects = [
     description:
       "A collaborative AI platform built for scientific discovery using ArXiV, openAI, JS(React,Node), and a cross-api communication architecture.",
     image: cosmicoImage,
-    tags: ["React", "Node.js", "LLMs", "MongoDB"],
+    tags: ["React", "Node.js", "Express.js", "LLMs", "MongoDB"],
     demoUrl: "https://cosmicoai.netlify.app",
     githubUrl: "https://github.com/BipulB7/Cosmico-Backend",
   },
@@ -31,7 +31,7 @@ const projects = [
     description:
       "This sleek personal website was built using React, Tailwind CSS, Vite, EmailJS, and custom animations. It features dark mode persistence, smooth scroll-based fades, responsive sections, and modular architecture for future expansion.",
     image: portfolioImage,
-    tags: ["React", "Tailwind", "Vite", "EmailJS"],
+    tags: ["React", "Tailwind", "Vite", "Netlify"],
     demoUrl: "https://bipulpbanjade.com/",
     githubUrl: "https://github.com/BipulB7/Portfolio-Site",
   },
