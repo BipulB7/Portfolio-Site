@@ -17,11 +17,11 @@ const projects = [
   },
   {
     id: 2,
-    title: "Advanced Physics Simulations",
+    title: "Advanced ML and Physics Simulations",
     description:
-      "A Python-driven suite of 8+ simulations modeling quantum phenomena, classical dynamics, and experimental statistical behavior using scientific libraries.",
+      "A Python suite of 10+ scientific simulations and advanced machine learning demos—including quantum and classical physics models, statistical experiments, an LSTM character-level text generator, and a spectral clustering visualization toolkit—all built using leading scientific libraries.",
     image: physicsImage,
-    tags: ["Python", "NumPy", "Matplotlib", "SciPy"],
+    tags: ["Python", "NumPy", "Matplotlib", "SciPy", "Sci-kit"],
     demoUrl: "https://github.com/BipulB7",
     githubUrl: "https://github.com/BipulB7",
   },
