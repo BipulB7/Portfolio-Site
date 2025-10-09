@@ -40,10 +40,10 @@ export const HeroSection = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl opacity-0 animate-fade-in-delay-3">
-              Aspiring Software Engineer with extensive experience working on optimizing industry-leading LLMs for efficiency, accuracy, and scientific reasoning.
+              AI & Systems Engineer with a passion for building and optimizing high-impact AI solutions. My experiences involve everything from developing full-stack websites, ML models, and enterprise AI tools.
               <br />
               <br />
-              I specialize in building intricate web applications using React, TypeScript, Tailwind CSS, Vite, and Framer Motion (as used here), advanced Python physics simulations, and AI integrations for apps.
+              I specialize in building intricate web applications using React, TypeScript, Tailwind CSS, Vite, and Framer Motion (as used here), advanced Python physics and Machine Learning simulations, and AI integrations for apps.
             </p>
 
             <div className="pt-4 opacity-0 animate-fade-in-delay-4">

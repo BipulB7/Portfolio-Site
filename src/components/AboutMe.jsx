@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Code, Atom, ArrowDown } from "lucide-react";
+import { Code, Atom } from "lucide-react";
 import nyulogo from "../assets/nyulogo.png";
+import fanaticsLogo from "../assets/fanatics.png"; // Added Fanatics logo
 import scaleLogo from "../assets/scale.jpeg";
 import libLogo from "../assets/library.png";
 
@@ -15,7 +16,7 @@ export const AboutMe = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 } // Adjusted threshold for better trigger timing
     );
 
     if (sectionRef.current) {
@@ -50,15 +51,15 @@ export const AboutMe = () => {
     >
       <div className="container mx-auto max-w-5xl">
         <h2
-          className={`text-3xl md:text-4xl font-bold mb-12 text-center ${fadeInClass} ${transitionClass}`}
+          className={`text-3xl md:text-4xl font-bold mb-16 text-center ${fadeInClass} ${transitionClass}`}
         >
-          About <span className="text-primary">Me</span>
+          My <span className="text-primary">Experience</span>
         </h2>
 
         <div className="space-y-12">
           {/* === EDUCATION === */}
-          <div className={`flex flex-col gap-2 ${fadeInClass} ${transitionClass} delay-100`}>
-            <div className="flex items-center gap-4">
+          <div className={`flex flex-col md:flex-row gap-4 md:gap-8 ${fadeInClass} ${transitionClass} delay-100`}>
+            <div className="flex items-center gap-4 min-w-[280px]">
               <img
                 src={nyulogo}
                 alt="NYU Logo"
@@ -68,97 +69,63 @@ export const AboutMe = () => {
                 New York University
               </h3>
             </div>
-            <p className="text-muted-foreground pl-14">
-              Pursuing a dual major in Computer Science and Physics at NYU with
-              concentrations in systems engineering and experimental physics.
-              Gaining deep experience in computational thinking, scientific
-              modeling, and software development.
+            <p className="text-muted-foreground md:border-l-2 md:border-border md:pl-8">
+              I'm pursuing a dual major in Computer Science and Physics, where I blend rigorous computational theory with first-principles scientific thinking. This unique combination allows me to approach complex software and AI problems with a deep, analytical perspective.
             </p>
           </div>
 
-          {/* === WORK EXPERIENCE === */}
-          <div className={`flex flex-col gap-2 ${fadeInClass} ${transitionClass} delay-200`}>
-            <div className="flex items-center gap-4">
-              <div className="p-2 rounded-full bg-primary/10">
-                <img
-                  src={scaleLogo}
-                  alt="Scale AI Logo"
-                  className="h-6 w-6 rounded-full object-cover"
-                />
-              </div>
+          {/* === FANATICS EXPERIENCE === */}
+          <div className={`flex flex-col md:flex-row gap-4 md:gap-8 ${fadeInClass} ${transitionClass} delay-200`}>
+            <div className="flex items-center gap-4 min-w-[280px]">
+              <img
+                src={fanaticsLogo}
+                alt="Fanatics Logo"
+                className="h-10 w-10 rounded-full object-cover"
+              />
+              <h3 className="text-xl md:text-2xl font-semibold">Fanatics</h3>
+            </div>
+            <p className="text-muted-foreground md:border-l-2 md:border-border md:pl-8">
+              At Fanatics, I focused on applying AI to solve tangible business problems. My work involved building an end-to-end intelligent system to automate corporate invoice analysis, which helped streamline a critical and time-consuming workflow for the finance and M&A teams.
+            </p>
+          </div>
+
+          {/* === SCALE AI EXPERIENCE === */}
+          <div className={`flex flex-col md:flex-row gap-4 md:gap-8 ${fadeInClass} ${transitionClass} delay-300`}>
+            <div className="flex items-center gap-4 min-w-[280px]">
+              <img
+                src={scaleLogo}
+                alt="Scale AI Logo"
+                className="h-10 w-10 rounded-full object-cover"
+              />
               <h3 className="text-xl md:text-2xl font-semibold">Scale AI</h3>
             </div>
-            <p className="text-muted-foreground pl-14">
-              Working on optimizing LLMs by curating high-quality
-              human-in-the-loop training data for reasoning, STEM accuracy, and
-              instruction following. Contributed to real-world AI product
-              pipelines used in production models.
+            <p className="text-muted-foreground md:border-l-2 md:border-border md:pl-8">
+              My work at Scale AI placed me at the core of the GenAI ecosystem. My responsibilities spanned from creating high-quality training data for Tier-1 LLMs to performing deep systems work to improve the performance and reliability of large-scale AI training pipelines.
             </p>
           </div>
 
-          {/* === LIBRARY WORK === */}
-          <div className={`flex flex-col gap-2 ${fadeInClass} ${transitionClass} delay-300`}>
-            <div className="flex items-center gap-4">
-              <div className="p-2 rounded-full bg-primary/10">
-                <img
-                  src={libLogo}
-                  alt="Library Logo"
-                  className="h-6 w-6 object-contain"
-                />
-              </div>
-              <h3 className="text-xl md:text-2xl font-semibold">
-                NYU Elmer Holmes Bobst Library
-              </h3>
-            </div>
-            <p className="text-muted-foreground pl-14">
-              Supported NYU students and faculty by managing scientific and computing materials, assisting with research access, and helping maintain lab equipment and resources. Collaborated on organizing academic materials and facilitating knowledge-sharing environments.
-            </p>
-          </div>
-
-          {/* === SCIENTIFIC WORK === */}
-          <div className={`flex flex-col gap-2 ${fadeInClass} ${transitionClass} delay-400`}>
-            <div className="flex items-center gap-4">
-              <div className="p-2 rounded-full bg-primary/10">
-                <Atom className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-semibold">
-                Physics + AI Research
-              </h3>
-            </div>
-            <p className="text-muted-foreground pl-14">
-              Developed scientific simulations using Python, NumPy, and
-              Matplotlib to model physical systems. Blending machine learning
-              with scientific methods to explore intelligent computation
-              grounded in physical theory.
-            </p>
-          </div>
-
-          {/* === TECHNICAL PROJECTS === */}
-          <div className={`flex flex-col gap-2 ${fadeInClass} ${transitionClass} delay-500`}>
-            <div className="flex items-center gap-4">
-              <div className="p-2 rounded-full bg-primary/10">
+          {/* === KEY PROJECTS === */}
+          <div className={`flex flex-col md:flex-row gap-4 md:gap-8 ${fadeInClass} ${transitionClass} delay-400`}>
+            <div className="flex items-center gap-4 min-w-[280px]">
+               <div className="p-2 rounded-full bg-primary/10">
                 <Code className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold">
-                Web Development Projects
-              </h3>
+              <h3 className="text-xl md:text-2xl font-semibold">Key Projects</h3>
             </div>
-            <p className="text-muted-foreground pl-14">
-              Built full-stack and front-end applications using React,
-              TypeScript, Tailwind, Vite, and Framer Motion. Designed sleek UI
-              components and deployed portfolio and project sites on Netlify
-              and GitHub Pages.
+             <p className="text-muted-foreground md:border-l-2 md:border-border md:pl-8">
+              My personal projects demonstrate a passion for building complete, end-to-end solutions. These range from exploring deep learning theory by building models from scratch in PyTorch to developing full-stack, AI-powered applications like a RAG-based research hub.
             </p>
           </div>
+
         </div>
 
         {/* Call to Action */}
-        <div className={`flex flex-col sm:flex-row gap-4 pt-12 justify-center ${fadeInClass} ${transitionClass} delay-600`}>
+        <div className={`flex flex-col sm:flex-row gap-4 pt-16 justify-center ${fadeInClass} ${transitionClass} delay-500`}>
           <a href="#contact" className="cosmic-button">
             Get In Touch
           </a>
           <a
-            href="/resume.pdf"
+            href="/resume.pdf" 
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
@@ -166,15 +133,6 @@ export const AboutMe = () => {
             Download Resume
           </a>
         </div>
-      </div>
-
-      {/* Scroll Button */}
-      <div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce cursor-pointer"
-        onClick={scrollToSkills}
-      >
-        <span className="text-sm text-muted-foreground mb-2"> Scroll </span>
-        <ArrowDown className="h-5 w-5 text-primary" />
       </div>
     </section>
   );
