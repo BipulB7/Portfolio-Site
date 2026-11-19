@@ -1,0 +1,229 @@
+/* =========================================================================
+   Generative project covers (ProjectArt).
+   Every animation is paused unless the cover is on screen, the tab is
+   visible and the visitor has not asked for reduced motion: the root gets
+   [data-play] only in that case. Hover speeds playback up from JS
+   (Animation.updatePlaybackRate), so nothing jumps.
+   ========================================================================= */
+
+.pa:not([data-play]) * {
+  animation-play-state: paused !important;
+}
+
+.pa-svg {
+  transform-origin: 50% 55%;
+  transition:
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pa[data-active] .pa-svg {
+    transform: scale(1.06);
+  }
+}
+.pa[data-active] .pa-svg {
+  filter: saturate(1.18) brightness(1.1);
+}
+.pa-boost {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pa[data-active] .pa-boost {
+  opacity: 1;
+}
+
+.pa-fill-box {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ---- shared backdrop -------------------------------------------------- */
+.pa-floor {
+  transform-box: view-box;
+  transform-origin: 200px 170px;
+  animation: pa-floor 5.5s linear infinite;
+}
+@keyframes pa-floor {
+  from { transform: scale(1); }
+  to { transform: scale(1.45); }
+}
+
+.pa-twinkle {
+  animation: pa-twinkle 3.6s ease-in-out infinite;
+}
+@keyframes pa-twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+/* A light pulse travelling along a path with pathLength="100":
+   stroke-dasharray "12 140", then this moves the dash from start to end. */
+.pa-travel {
+  animation: pa-travel 3.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+@keyframes pa-travel {
+  0% { stroke-dashoffset: 14; }
+  62%, 100% { stroke-dashoffset: -102; }
+}
+.pa-linear {
+  animation-timing-function: linear !important;
+}
+.pa-travel-rev {
+  animation: pa-travel-rev 3.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+@keyframes pa-travel-rev {
+  0% { stroke-dashoffset: -102; }
+  62%, 100% { stroke-dashoffset: 14; }
+}
+
+.pa-blink {
+  animation: pa-blink 2.4s steps(1, end) infinite;
+}
+@keyframes pa-blink {
+  0%, 100% { opacity: 1; }
+  35% { opacity: 0.25; }
+  55% { opacity: 1; }
+  80% { opacity: 0.45; }
+}
+
+.pa-ping {
+  animation: pa-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes pa-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* ---- thermal ---------------------------------------------------------- */
+.pa-cool {
+  animation: pa-cool 9s ease-in-out infinite;
+}
+@keyframes pa-cool {
+  0%, 20% { fill: #ff8742; }
+  32% { fill: #ff5cb8; }
+  44% { fill: #9b83f7; }
+  56%, 80% { fill: #74e5fb; }
+  90% { fill: #ff5cb8; }
+  100% { fill: #ff8742; }
+}
+.pa-blob {
+  animation: pa-blob 9s ease-in-out infinite;
+}
+@keyframes pa-blob {
+  0%, 20% { fill: #ffb35c; transform: scale(1); }
+  32% { fill: #ff5cb8; transform: scale(0.92); }
+  44% { fill: #9b83f7; transform: scale(0.7); }
+  56%, 80% { fill: #74e5fb; transform: scale(0.5); }
+  90% { fill: #ff5cb8; transform: scale(0.85); }
+  100% { fill: #ffb35c; transform: scale(1); }
+}
+.pa-gem {
+  animation: pa-gem 9s ease-in-out infinite;
+}
+@keyframes pa-gem {
+  0%, 30%, 92%, 100% { opacity: 0; }
+  50%, 80% { opacity: 1; }
+}
+.pa-label-before {
+  animation: pa-label-before 9s ease-in-out infinite;
+}
+@keyframes pa-label-before {
+  0%, 30%, 92%, 100% { opacity: 1; }
+  38%, 86% { opacity: 0; }
+}
+.pa-label-after {
+  animation: pa-label-after 9s ease-in-out infinite;
+}
+@keyframes pa-label-after {
+  0%, 36%, 88%, 100% { opacity: 0; }
+  46%, 82% { opacity: 1; }
+}
+.pa-legend {
+  animation: pa-legend 9s ease-in-out infinite;
+}
+@keyframes pa-legend {
+  0%, 22%, 96%, 100% { transform: translateX(0); }
+  56%, 80% { transform: translateX(52px); }
+}
+
+/* ---- replay ----------------------------------------------------------- */
+.pa-sweep {
+  animation: pa-sweep 6s linear infinite;
+}
+@keyframes pa-sweep {
+  from { transform: translateX(0); }
+  to { transform: translateX(222px); }
+}
+.pa-progress {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: pa-progress 6s linear infinite;
+}
+@keyframes pa-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.pa-scan {
+  animation: pa-scan 6s ease-out infinite;
+}
+@keyframes pa-scan {
+  0% { opacity: 1; }
+  14%, 100% { opacity: var(--o, 0.5); }
+}
+
+/* ---- cad -------------------------------------------------------------- */
+.pa-explode {
+  animation: pa-explode 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes pa-explode {
+  0%, 12%, 86%, 100% { transform: translate(0, 0); }
+  42%, 62% { transform: translate(var(--tx, 0px), var(--ty, 0px)); }
+}
+
+/* ---- constellation ---------------------------------------------------- */
+.pa-draw {
+  animation: pa-draw 11s ease-in-out infinite;
+}
+@keyframes pa-draw {
+  0% { stroke-dashoffset: 100; opacity: 0.9; }
+  30%, 78% { stroke-dashoffset: 0; opacity: 0.9; }
+  92%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.pa-meteor {
+  animation: pa-meteor 9s ease-in infinite;
+}
+@keyframes pa-meteor {
+  0%, 70% { transform: translate(0, 0); opacity: 0; }
+  72% { opacity: 1; }
+  82%, 100% { transform: translate(-150px, 90px); opacity: 0; }
+}
+
+/* ---- ledger / neural: short glow as an activation passes -------------- */
+.pa-flash {
+  animation: pa-flash 5s ease-out infinite;
+}
+@keyframes pa-flash {
+  0%, 100% { opacity: 0; }
+  6% { opacity: var(--peak, 0.8); }
+  30% { opacity: 0; }
+}
+.pa-kernel {
+  animation: pa-kernel 4.5s steps(1, end) infinite;
+}
+@keyframes pa-kernel {
+  0% { transform: translate(0, 0); }
+  11% { transform: translate(var(--sx), var(--sy1)); }
+  22% { transform: translate(calc(var(--sx) * 2), var(--sy2)); }
+  33% { transform: translate(0, var(--dy)); }
+  44% { transform: translate(var(--sx), calc(var(--dy) + var(--sy1))); }
+  55% { transform: translate(calc(var(--sx) * 2), calc(var(--dy) + var(--sy2))); }
+  66% { transform: translate(0, calc(var(--dy) * 2)); }
+  77% { transform: translate(var(--sx), calc(var(--dy) * 2 + var(--sy1))); }
+  88% { transform: translate(calc(var(--sx) * 2), calc(var(--dy) * 2 + var(--sy2))); }
+}
+
+/* The grid floor only drives toward the horizon while the cover is active
+   (hovered card, open modal): calmer at rest and far fewer repaints. */
+.pa:not([data-active]) .pa-floor {
+  animation-play-state: paused;
+}

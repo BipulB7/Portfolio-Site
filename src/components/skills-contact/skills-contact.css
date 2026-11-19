@@ -1,0 +1,171 @@
+/* Styles for the Skills + Contact sections.
+   Kept in the components layer so Tailwind utilities can still override them.
+   All colours come from the design tokens in index.css. */
+
+@layer components {
+  /* ---------------------------------------------------------------- */
+  /* Off-screen: pause every CSS animation inside a section           */
+  /* ---------------------------------------------------------------- */
+  .sc-offscreen *,
+  .sc-offscreen *::before,
+  .sc-offscreen *::after {
+    animation-play-state: paused !important;
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Marquee                                                          */
+  /* ---------------------------------------------------------------- */
+  .sc-marquee-track {
+    will-change: transform;
+  }
+  .sc-marquee-row:hover .sc-marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Outlined display word: transparent fill, hairline stroke */
+  .sc-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.25);
+    transition: -webkit-text-stroke-color 0.5s var(--ease-out-expo);
+  }
+  .sc-marquee-row:hover .sc-outline {
+    -webkit-text-stroke-color: hsl(var(--foreground) / 0.45);
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Skill cards                                                      */
+  /* ---------------------------------------------------------------- */
+  .sc-index {
+    color: transparent;
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.1);
+    transition:
+      -webkit-text-stroke-color 0.7s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+  }
+  .group\/glow:hover .sc-index {
+    -webkit-text-stroke-color: hsl(var(--neon) / 0.45);
+    transform: translate3d(-6px, 4px, 0);
+  }
+
+  .sc-chip {
+    transition:
+      border-color 0.35s var(--ease-out-expo),
+      box-shadow 0.35s var(--ease-out-expo),
+      color 0.35s var(--ease-out-expo),
+      background-color 0.35s var(--ease-out-expo);
+  }
+  .sc-chip:hover {
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--neon) / 0.55);
+    background-color: hsl(var(--neon) / 0.06);
+    box-shadow:
+      0 0 0 1px hsl(var(--neon) / 0.1),
+      0 0 18px -4px hsl(var(--neon) / 0.55);
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Floating-label fields                                            */
+  /* ---------------------------------------------------------------- */
+  .sc-field {
+    position: relative;
+  }
+  .sc-input {
+    display: block;
+    width: 100%;
+    border-radius: 0.95rem;
+    border: 1px solid hsl(var(--input) / 0.9);
+    background: hsl(var(--background) / 0.45);
+    color: hsl(var(--foreground));
+    padding: 1.6rem 1rem 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    outline: none;
+    transition:
+      border-color 0.45s var(--ease-out-expo),
+      box-shadow 0.45s var(--ease-out-expo),
+      background-color 0.45s var(--ease-out-expo);
+  }
+  .sc-input::placeholder {
+    color: transparent;
+  }
+  .sc-input:hover {
+    border-color: hsl(var(--primary) / 0.45);
+  }
+  .sc-input:focus,
+  .sc-input:focus-visible {
+    outline: none;
+    border-color: hsl(var(--neon) / 0.65);
+    background: hsl(var(--background) / 0.7);
+    box-shadow:
+      0 0 0 4px hsl(var(--neon) / 0.1),
+      0 0 30px -8px hsl(var(--neon) / 0.55);
+  }
+  .sc-input:user-invalid {
+    border-color: hsl(var(--destructive) / 0.65);
+  }
+  .sc-input:-webkit-autofill,
+  .sc-input:-webkit-autofill:hover,
+  .sc-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: hsl(var(--foreground));
+    caret-color: hsl(var(--foreground));
+    box-shadow: 0 0 0 1000px hsl(var(--card)) inset;
+    transition: background-color 9999s;
+  }
+
+  /* Label rests inside the field, floats up and shrinks once the field
+     is focused or has a value (placeholder-shown technique). */
+  .sc-label {
+    position: absolute;
+    left: 1rem;
+    top: 1.05rem;
+    max-width: calc(100% - 2rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+    transform-origin: left top;
+    transform: translate3d(0, -0.6rem, 0) scale(0.76);
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      color 0.4s var(--ease-out-expo);
+  }
+  .sc-input:placeholder-shown:not(:focus) + .sc-label {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  .sc-input:focus + .sc-label {
+    color: hsl(var(--neon));
+  }
+
+  /* Hairline that spreads from the centre on focus (heat spreading) */
+  .sc-line {
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, hsl(var(--heat)), hsl(var(--neon)) 35%, hsl(var(--primary)) 65%, hsl(var(--ice)));
+    transform: scaleX(0);
+    transition: transform 0.7s var(--ease-out-expo);
+    pointer-events: none;
+  }
+  .sc-input:focus ~ .sc-line {
+    transform: scaleX(1);
+  }
+
+  /* Indeterminate "sending" scan line across the top of the form card */
+  .sc-scan {
+    animation: sc-scan 1.4s var(--ease-in-out-quint) infinite;
+  }
+  @keyframes sc-scan {
+    from { transform: translateX(-110%); }
+    to { transform: translateX(330%); }
+  }
+
+  /* Clock colon */
+  .sc-colon {
+    transition: opacity 0.45s ease-in-out;
+  }
+}

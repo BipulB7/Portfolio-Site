@@ -1,96 +1,94 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { createStarfield } from "./atmosphere/starfield";
 
-// id, size, x, y, opacity, animationDuration
-// id, size, x, y, delay, animationDuration
+/**
+ * Site-wide atmosphere: drifting aurora, a canvas starfield with parallax,
+ * shooting stars and a cursor lattice, an edge vignette, and a barely-there
+ * film-grain + CRT scanline texture on top of everything.
+ *
+ * Self-contained (no props) so any page can drop it in.
+ */
 
-export const StarBackground = () => {
-  const [stars, setStars] = useState([]);
-  const [meteors, setMeteors] = useState([]);
+const AURORA = [
+  {
+    // violet, top left
+    className: "-left-[16%] -top-[22%] h-[72vmax] w-[72vmax] opacity-[0.13] dark:opacity-[0.24]",
+    color: "var(--primary)",
+    delay: "0s",
+    duration: "26s",
+  },
+  {
+    // diamond ice, right
+    className: "-right-[24%] top-[18%] h-[62vmax] w-[62vmax] opacity-[0.1] dark:opacity-[0.17]",
+    color: "var(--ice)",
+    delay: "-11s",
+    duration: "34s",
+  },
+  {
+    // faint neon / heat ember, bottom left (the "warm" end of the thermal story)
+    className: "-bottom-[32%] left-[2%] h-[58vmax] w-[58vmax] opacity-[0.07] dark:opacity-[0.13]",
+    color: "var(--neon)",
+    color2: "var(--heat)",
+    delay: "-19s",
+    duration: "41s",
+  },
+];
+
+const Aurora = () => (
+  <div className="absolute inset-0 overflow-hidden">
+    {AURORA.map((blob, i) => (
+      <div
+        key={i}
+        className={`absolute rounded-full animate-aurora ${blob.className}`}
+        style={{
+          background: blob.color2
+            ? `radial-gradient(closest-side, hsl(${blob.color} / 0.9), hsl(${blob.color2} / 0.35) 55%, transparent)`
+            : `radial-gradient(closest-side, hsl(${blob.color} / 0.95), hsl(${blob.color} / 0.4) 50%, transparent)`,
+          animationDelay: blob.delay,
+          animationDuration: blob.duration,
+        }}
+      />
+    ))}
+  </div>
+);
+
+const Starfield = () => {
+  const ref = useRef(null);
 
   useEffect(() => {
-    generateStars();
-    generateMeteors();
-
-    const handleResize = () => {
-      generateStars();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+    if (!ref.current) return undefined;
+    return createStarfield(ref.current);
   }, []);
 
-  const generateStars = () => {
-    const numberOfStars = Math.floor(
-      (window.innerWidth * window.innerHeight) / 10000 //Populating star density
-    );
-
-    const newStars = [];
-
-    for (let i = 0; i < numberOfStars; i++) {
-      newStars.push({
-        id: i, //Index
-        size: Math.random() * 3 + 1,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        opacity: Math.random() * 0.5 + 0.5, //Faint/ bright stars
-        animationDuration: Math.random() * 4 + 2, //Natural twinkling
-      });
-    }
-
-    setStars(newStars);
-  };
-
-  //Same logic as stars but edited slightly
-  const generateMeteors = () => {
-    const numberOfMeteors = 10;
-    const newMeteors = [];
-
-    for (let i = 0; i < numberOfMeteors; i++) {
-      newMeteors.push({
-        id: i,
-        size: Math.random() * 2 + 1,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        delay: Math.random() * 15,
-        animationDuration: Math.random() * 3 + 3,
-      });
-    }
-
-    setMeteors(newMeteors);
-  };
-
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className="star animate-pulse-subtle"
-          style={{ //Styling generating stars
-            width: star.size + "px",
-            height: star.size + "px",
-            left: star.x + "%",
-            top: star.y + "%",
-            opacity: star.opacity,
-            animationDuration: star.animationDuration + "s",
-          }}
-        />
-      ))}
+    <canvas
+      ref={ref}
+      className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-[1600ms] ease-out"
+    />
+  );
+};
 
-      {meteors.map((meteor) => (
+export const StarBackground = () => {
+  return (
+    <>
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <Aurora />
+        <Starfield />
+        {/* Edge vignette keeps the eye in the middle and the corners deep */}
         <div
-          key={meteor.id}
-          className="meteor animate-meteor"
-          style={{ //Meteor styling
-            width: meteor.size * 10  + "px",
-            height: meteor.size * 1.2 + "px",
-            left: meteor.x + "%",
-            top: meteor.y + "%",
-            animationDelay: meteor.delay,
-            animationDuration: meteor.animationDuration + "s",
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 95% at 50% 42%, transparent 52%, hsl(var(--background) / 0.55) 82%, hsl(var(--background) / 0.9) 100%)",
           }}
         />
-      ))}
-    </div>
+      </div>
+
+      {/* Retro texture: film grain + CRT scanlines. Barely there on purpose. */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[70]">
+        <div className="noise absolute inset-0 opacity-[0.025] mix-blend-overlay dark:opacity-[0.04] dark:mix-blend-soft-light" />
+        <div className="scanlines absolute inset-0 opacity-[0.07] dark:opacity-[0.22]" />
+      </div>
+    </>
   );
 };

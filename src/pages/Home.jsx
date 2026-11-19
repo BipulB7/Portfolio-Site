@@ -1,38 +1,40 @@
-import { ThemeToggle } from "../components/ThemeToggle";
+import { useEffect } from "react";
 import { StarBackground } from "../components/StarBackground";
+import { Intro } from "../components/Intro";
+import { ScrollProgress } from "../components/ScrollProgress";
 import { NavBar } from "../components/NavBar";
 import { HeroSection } from "../components/HeroSection";
 import { AboutMe } from "../components/AboutMe";
-import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
+import { SkillsSection } from "../components/SkillsSection";
 import { ContactSection } from "../components/ContactSection";
+import { Footer } from "../components/Footer";
 
 export const Home = () => {
-    return (
-        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+  useEffect(() => {
+    // Always start at the top on first load (main.jsx disables scroll restoration)
+    window.scrollTo(0, 0);
+  }, []);
 
-        { /* Theme Toggle */}
-        <ThemeToggle/>
+  return (
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-clip">
+      <Intro />
 
-        { /* BgroundEffects Toggle */}
-        <StarBackground/>
+      {/* Fixed background layers: starfield, aurora, film grain, scanlines */}
+      <StarBackground />
 
-        { /* NavBar Toggle */}
-        <NavBar />
+      <ScrollProgress />
+      <NavBar />
 
-        { /* Content Toggle */}
-        <main>
-            <HeroSection />
-            <AboutMe />
-            <SkillsSection />
-            <ProjectsSection />
-            <ContactSection />
-        </main>
+      <main className="relative z-10">
+        <HeroSection />
+        <AboutMe />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+      </main>
 
-
-        { /* Footer Toggle */}
-
-
+      <Footer />
     </div>
-    );
+  );
 };

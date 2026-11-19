@@ -2,9 +2,44 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/assets/favi.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bipul Banjade | Portfolio</title>
+    <meta
+      name="description"
+      content="Bipul Banjade is an AI & Systems Engineer working across software, GPU test platforms, thermal validation and hardware for diamond-cooled AI servers."
+    />
+    <meta name="theme-color" content="#05060f" />
+    <meta property="og:title" content="Bipul Banjade | AI & Systems Engineer" />
+    <meta
+      property="og:description"
+      content="Software, test platforms and thermal validation where AI meets hardware."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bipulpbanjade.com/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Apply the saved theme before first paint so there is no flash. Dark is the default. -->
+    <script>
+      (function () {
+        try {
+          // ?theme=light|dark overrides (for testing); otherwise the saved choice
+          var q = new URLSearchParams(location.search).get("theme");
+          if (q === "light" || q === "dark") localStorage.setItem("theme", q);
+          if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

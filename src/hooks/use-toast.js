@@ -1,7 +1,7 @@
 // === use-toast.js ===
 import * as React from "react";
 
-const TOAST_LIMIT = 1;
+const TOAST_LIMIT = 3;
 const TOAST_REMOVE_DELAY = 4000; // Updated from 1000000 to 4 seconds
 
 let count = 0;
@@ -102,7 +102,7 @@ function useToast() {
       const index = listeners.indexOf(setState);
       if (index > -1) listeners.splice(index, 1);
     };
-  }, [state]);
+  }, []);
 
   return {
     ...state,
